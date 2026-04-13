@@ -1,0 +1,93 @@
+{
+  "openclaw": {
+    "base_url": "http://187.127.18.17:48627",
+    "project": "openclaw-h3ur",
+    "project_name": "World Metalic IA"
+  },
+  "llm": {
+    "provider": "groq",
+    "model": "llama-3.3-70b-versatile",
+    "fallback_model": "llama-3.1-8b-instant",
+    "settings": {
+      "default_temperature": 0.3,
+      "max_tokens": 4096,
+      "top_p": 0.9,
+      "stream": true
+    }
+  },
+  "agents": [
+    {
+      "id": "atendimento",
+      "name": "WM Assistente",
+      "description": "Agente de atendimento front — qualifica e roteia",
+      "prompt_file": "src/agents/01-atendimento.md",
+      "temperature": 0.3,
+      "max_tokens": 1024,
+      "triggers": ["whatsapp_message"],
+      "priority": 1,
+      "active": true
+    },
+    {
+      "id": "analista",
+      "name": "WM Analista",
+      "description": "Analisa editais de licitação (PDF)",
+      "prompt_file": "src/agents/02-analista-editais.md",
+      "temperature": 0.1,
+      "max_tokens": 4096,
+      "triggers": ["analise_edital", "pdf_upload"],
+      "priority": 2,
+      "active": true
+    },
+    {
+      "id": "propostas",
+      "name": "WM Propostas",
+      "description": "Gera propostas comerciais e técnicas",
+      "prompt_file": "src/agents/03-gerador-propostas.md",
+      "temperature": 0.2,
+      "max_tokens": 4096,
+      "triggers": ["gerar_proposta"],
+      "priority": 3,
+      "active": true
+    },
+    {
+      "id": "monitor",
+      "name": "WM Monitor",
+      "description": "Monitora portais de licitação e envia alertas",
+      "prompt_file": "src/agents/04-monitorador-editais.md",
+      "temperature": 0.1,
+      "max_tokens": 2048,
+      "triggers": ["cron_monitor", "buscar_editais"],
+      "priority": 4,
+      "active": true,
+      "schedule": {
+        "monitor": "0 */4 * * *",
+        "daily_report": "0 8 * * *",
+        "urgent_check": "0 * * * *"
+      }
+    }
+  ],
+  "routing_rules": {
+    "default_agent": "atendimento",
+    "keywords": {
+      "edital|analisar|análise|pdf|documento": "analista",
+      "proposta|preço|técnica|montar|gerar": "propostas",
+      "monitorar|buscar|encontrar|editais|oportunidade": "monitor"
+    },
+    "file_types": {
+      "application/pdf": "analista",
+      "image/*": "atendimento"
+    }
+  },
+  "knowledge_base": {
+    "files": [
+      "src/knowledge/base-licitacoes.md",
+      "src/knowledge/lei-14133-resumo.md",
+      "src/knowledge/lei-8666-resumo.md"
+    ],
+    "templates": [
+      "src/templates/proposta-comercial.md",
+      "src/templates/proposta-tecnica.md",
+      "src/templates/checklist-documentos.md"
+    ]
+  }
+}

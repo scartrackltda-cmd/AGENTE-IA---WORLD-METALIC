@@ -1,0 +1,200 @@
+{
+  "flow_name": "Atendimento Principal",
+  "version": "1.0",
+  "description": "Fluxo de atendimento via WhatsApp — World Metalic",
+  "trigger": "whatsapp_message_received",
+  "steps": [
+    {
+      "id": "step_01",
+      "name": "Receber Mensagem",
+      "type": "trigger",
+      "source": "evolution_api_webhook",
+      "config": {
+        "instance": "WORLD METALIC",
+        "event": "messages.upsert"
+      },
+      "output": {
+        "sender_number": "{{message.key.remoteJid}}",
+        "sender_name": "{{message.pushName}}",
+        "message_text": "{{message.message.conversation}}",
+        "message_type": "{{message.messageType}}",
+        "has_document": "{{message.message.documentMessage ? true : false}}",
+        "timestamp": "{{message.messageTimestamp}}"
+      },
+      "next": "step_02"
+    },
+    {
+      "id": "step_02",
+      "name": "Verificar Tipo de Mensagem",
+      "type": "condition",
+      "conditions": [
+        {
+          "if": "{{has_document}} == true AND {{message_type}} == 'documentMessage'",
+          "then": "step_05_analise_edital"
+        },
+        {
+          "if": "{{message_type}} == 'audioMessage'",
+          "then": "step_03_audio_nao_suportado"
+        },
+        {
+          "else": "step_04_processar_texto"
+        }
+      ]
+    },
+    {
+      "id": "step_03_audio_nao_suportado",
+      "name": "Responder Áudio Não Suportado",
+      "type": "action",
+      "action": "send_whatsapp_message",
+      "config": {
+        "instance": "WORLD METALIC",
+        "number": "{{sender_number}}",
+        "text": "Desculpe, no momento só consigo processar mensagens de texto e documentos PDF. 📝\n\nPoderia enviar sua solicitação por escrito?"
+      },
+      "next": "end"
+    },
+    {
+      "id": "step_04_processar_texto",
+      "name": "Processar com Agente de Atendimento",
+      "type": "agent",
+      "agent": "atendimento",
+      "config": {
+        "model": "llama-3.3-70b-versatile",
+        "temperature": 0.3,
+        "system_prompt": "{{agent_01_system_prompt}}",
+        "user_message": "Cliente {{sender_name}} ({{sender_number}}) disse: {{message_text}}",
+        "context": {
+          "historico_conversa": "{{conversation_history}}",
+          "dados_cliente": "{{client_data}}"
+        }
+      },
+      "output": {
+        "resposta": "{{agent_response}}",
+        "intencao": "{{detected_intent}}",
+        "roteamento": "{{next_agent}}"
+      },
+      "next": "step_06_verificar_roteamento"
+    },
+    {
+      "id": "step_05_analise_edital",
+      "name": "Receber e Processar PDF",
+      "type": "action",
+      "action": "download_document",
+      "config": {
+        "document_url": "{{message.message.documentMessage.url}}",
+        "mime_type": "{{message.message.documentMessage.mimetype}}",
+        "filename": "{{message.message.documentMessage.fileName}}"
+      },
+      "output": {
+        "pdf_content": "{{extracted_text}}",
+        "pdf_path": "{{saved_file_path}}"
+      },
+      "next": "step_05b_analisar"
+    },
+    {
+      "id": "step_05b_analisar",
+      "name": "Analisar Edital com Agente Analista",
+      "type": "agent",
+      "agent": "analista",
+      "config": {
+        "model": "llama-3.3-70b-versatile",
+        "temperature": 0.1,
+        "max_tokens": 4096,
+        "system_prompt": "{{agent_02_system_prompt}}",
+        "user_message": "Analise o seguinte edital:\n\n{{pdf_content}}"
+      },
+      "output": {
+        "analise_completa": "{{agent_response}}"
+      },
+      "next": "step_07_enviar_resposta"
+    },
+    {
+      "id": "step_06_verificar_roteamento",
+      "name": "Verificar Roteamento",
+      "type": "condition",
+      "conditions": [
+        {
+          "if": "{{next_agent}} == 'analista'",
+          "then": "step_06a_pedir_pdf"
+        },
+        {
+          "if": "{{next_agent}} == 'propostas'",
+          "then": "step_06b_coletar_dados_proposta"
+        },
+        {
+          "if": "{{next_agent}} == 'monitor'",
+          "then": "step_06c_configurar_monitoramento"
+        },
+        {
+          "else": "step_07_enviar_resposta"
+        }
+      ]
+    },
+    {
+      "id": "step_06a_pedir_pdf",
+      "name": "Solicitar PDF do Edital",
+      "type": "action",
+      "action": "send_whatsapp_message",
+      "config": {
+        "instance": "WORLD METALIC",
+        "number": "{{sender_number}}",
+        "text": "{{resposta}}\n\nPor favor, envie o PDF do edital que deseja analisar. 📄"
+      },
+      "next": "end_wait_for_document"
+    },
+    {
+      "id": "step_06b_coletar_dados_proposta",
+      "name": "Coletar Dados para Proposta",
+      "type": "agent",
+      "agent": "propostas",
+      "config": {
+        "model": "llama-3.3-70b-versatile",
+        "temperature": 0.2,
+        "system_prompt": "{{agent_03_system_prompt}}",
+        "user_message": "O cliente deseja gerar uma proposta. Dados coletados até agora: {{client_data}}. Solicite os dados faltantes."
+      },
+      "next": "step_07_enviar_resposta"
+    },
+    {
+      "id": "step_06c_configurar_monitoramento",
+      "name": "Configurar Monitoramento",
+      "type": "agent",
+      "agent": "monitor",
+      "config": {
+        "model": "llama-3.3-70b-versatile",
+        "temperature": 0.1,
+        "system_prompt": "{{agent_04_system_prompt}}",
+        "user_message": "O cliente deseja monitoramento de editais. Dados: {{client_data}}. Configure os filtros e confirme com o cliente."
+      },
+      "next": "step_07_enviar_resposta"
+    },
+    {
+      "id": "step_07_enviar_resposta",
+      "name": "Enviar Resposta via WhatsApp",
+      "type": "action",
+      "action": "send_whatsapp_message",
+      "config": {
+        "instance": "WORLD METALIC",
+        "number": "{{sender_number}}",
+        "text": "{{resposta || analise_completa}}"
+      },
+      "next": "step_08_salvar_historico"
+    },
+    {
+      "id": "step_08_salvar_historico",
+      "name": "Salvar no Histórico",
+      "type": "action",
+      "action": "save_conversation",
+      "config": {
+        "client_number": "{{sender_number}}",
+        "client_name": "{{sender_name}}",
+        "message_in": "{{message_text}}",
+        "message_out": "{{resposta}}",
+        "intent": "{{intencao}}",
+        "agent_used": "{{current_agent}}",
+        "timestamp": "{{timestamp}}"
+      },
+      "next": "end"
+    }
+  ]
+}
