@@ -1,0 +1,33 @@
+{
+  "evolution_api": {
+    "base_url": "http://187.127.18.17:43654",
+    "api_key": "q6bOgsmWkvMTh4Cz7odqKqa2CG2KFia6",
+    "instance": "WORLD METALIC",
+    "whatsapp_number": "+5541984659663",
+    "manager_url": "http://187.127.18.17:43654/manager/login"
+  },
+  "webhook": {
+    "url": "http://187.127.18.17:48627/webhook/evolution",
+    "events": [
+      "messages.upsert",
+      "messages.update",
+      "connection.update",
+      "qrcode.updated"
+    ],
+    "enabled": true
+  },
+  "endpoints": {
+    "send_text": "/message/sendText/WORLD METALIC",
+    "send_media": "/message/sendMedia/WORLD METALIC",
+    "send_document": "/message/sendWhatsAppAudio/WORLD METALIC",
+    "check_number": "/chat/whatsappNumbers/WORLD METALIC",
+    "fetch_messages": "/chat/findMessages/WORLD METALIC",
+    "instance_status": "/instance/connectionState/WORLD METALIC"
+  },
+  "message_templates": {
+    "welcome": "Olá! 👋 Sou a assistente virtual da World Metalic, especializada em licitações públicas.\n\nPosso te ajudar com:\n1️⃣ Monitorar editais para sua empresa\n2️⃣ Analisar um edital específico\n3️⃣ Montar uma proposta comercial ou técnica\n4️⃣ Tirar dúvidas sobre licitações\n\nComo posso te ajudar hoje?",
+    "fora_horario": "Obrigado pelo contato! 🕐\nNosso horário de atendimento humano é de Segunda a Sexta, das 8h às 18h.\nSua mensagem foi registrada e nossa equipe retornará no próximo dia útil.\n\nEnquanto isso, posso te ajudar com informações gerais sobre licitações!",
+    "erro_sistema": "Desculpe, estamos com uma instabilidade momentânea. 🔧\nSua solicitação foi registrada e nossa equipe entrará em contato em breve.",
+    "despedida": "Foi um prazer atender você! 😊\nSe precisar de algo mais, é só chamar.\n\nWorld Metalic — Sua assessoria em licitações públicas."
+  }
+}

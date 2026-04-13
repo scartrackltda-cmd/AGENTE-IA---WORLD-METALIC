@@ -1,0 +1,124 @@
+{
+  "flow_name": "Análise de Edital",
+  "version": "1.0",
+  "description": "Fluxo para receber PDF de edital, analisar e devolver relatório estruturado",
+  "trigger": "pdf_received",
+  "steps": [
+    {
+      "id": "step_01",
+      "name": "Receber PDF",
+      "type": "trigger",
+      "config": {
+        "source": "evolution_api",
+        "file_type": "application/pdf"
+      },
+      "output": {
+        "pdf_url": "{{document.url}}",
+        "pdf_name": "{{document.fileName}}",
+        "sender": "{{sender_number}}",
+        "sender_name": "{{sender_name}}"
+      },
+      "next": "step_02"
+    },
+    {
+      "id": "step_02",
+      "name": "Confirmar Recebimento",
+      "type": "action",
+      "action": "send_whatsapp",
+      "config": {
+        "number": "{{sender}}",
+        "text": "📄 Recebi o edital \"{{pdf_name}}\"!\n\n⏳ Estou analisando o documento. Dependendo do tamanho, isso pode levar de 2 a 5 minutos.\n\nVou te enviar:\n✅ Resumo executivo\n✅ Prazos críticos\n✅ Checklist de documentos\n✅ Alertas e pontos de atenção\n✅ Recomendação\n\nAguarde..."
+      },
+      "next": "step_03"
+    },
+    {
+      "id": "step_03",
+      "name": "Extrair Texto do PDF",
+      "type": "action",
+      "action": "extract_pdf_text",
+      "config": {
+        "pdf_url": "{{pdf_url}}",
+        "method": "ocr_if_needed",
+        "max_pages": 100
+      },
+      "output": {
+        "pdf_text": "{{extracted_text}}",
+        "page_count": "{{total_pages}}"
+      },
+      "error_handler": "step_error_pdf",
+      "next": "step_04"
+    },
+    {
+      "id": "step_04",
+      "name": "Analisar com Agente",
+      "type": "agent",
+      "agent": "wm-analista",
+      "config": {
+        "model": "llama-3.3-70b-versatile",
+        "temperature": 0.1,
+        "max_tokens": 4096,
+        "system_prompt": "{{agent_02_system_prompt}}",
+        "user_message": "Analise o seguinte edital de licitação ({{page_count}} páginas):\n\n{{pdf_text}}",
+        "knowledge_base": ["lei-14133-resumo", "lei-8666-resumo", "base-licitacoes"]
+      },
+      "output": {
+        "analise": "{{agent_response}}"
+      },
+      "next": "step_05"
+    },
+    {
+      "id": "step_05",
+      "name": "Formatar e Enviar Análise",
+      "type": "action",
+      "action": "send_whatsapp_parts",
+      "config": {
+        "number": "{{sender}}",
+        "messages": [
+          {
+            "text": "📊 *ANÁLISE DO EDITAL: {{pdf_name}}*\n\n{{analise_parte_1_resumo}}"
+          },
+          {
+            "text": "📋 *PRAZOS E HABILITAÇÃO*\n\n{{analise_parte_2_prazos}}"
+          },
+          {
+            "text": "✅ *CHECKLIST DE DOCUMENTOS*\n\n{{analise_parte_3_checklist}}"
+          },
+          {
+            "text": "⚠️ *ALERTAS E RECOMENDAÇÃO*\n\n{{analise_parte_4_alertas}}\n\n---\nDeseja que eu gere uma proposta para este edital? Responda SIM para prosseguir."
+          }
+        ],
+        "delay_between_ms": 2000
+      },
+      "next": "step_06"
+    },
+    {
+      "id": "step_06",
+      "name": "Salvar Análise",
+      "type": "action",
+      "action": "save_to_database",
+      "config": {
+        "collection": "analises",
+        "data": {
+          "edital_nome": "{{pdf_name}}",
+          "cliente_numero": "{{sender}}",
+          "cliente_nome": "{{sender_name}}",
+          "analise_completa": "{{analise}}",
+          "data_analise": "{{now()}}",
+          "paginas": "{{page_count}}"
+        }
+      },
+      "next": "end"
+    },
+    {
+      "id": "step_error_pdf",
+      "name": "Erro ao Processar PDF",
+      "type": "action",
+      "action": "send_whatsapp",
+      "config": {
+        "number": "{{sender}}",
+        "text": "❌ Desculpe, não consegui processar o PDF \"{{pdf_name}}\".\n\nPossíveis motivos:\n- O arquivo pode estar corrompido\n- O PDF pode ser uma imagem (escaneado sem OCR)\n- O arquivo pode estar protegido por senha\n\nPor favor, tente:\n1. Reenviar o arquivo\n2. Verificar se o PDF abre corretamente no seu celular/computador\n3. Se for escaneado, tente usar um app de OCR antes\n\nSe o problema persistir, nossa equipe pode ajudar manualmente no horário comercial (8h-18h)."
+      },
+      "next": "end"
+    }
+  ]
+}

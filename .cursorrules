@@ -1,0 +1,53 @@
+# World Metalic IA — Cursor Rules
+
+## Contexto do Projeto
+Este é um projeto de agência de IA para assessoria em licitações públicas.
+Cliente: World Metalic
+Stack: OpenClaw + Evolution API (WhatsApp) + Groq/Llama
+
+## Infraestrutura
+- VPS IP: 187.127.18.17
+- Evolution API: porta 43654 (API Key: q6bOgsmWkvMTh4Cz7odqKqa2CG2KFia6)
+- OpenClaw: porta 48627 (projeto: openclaw-h3ur)
+- Instância WhatsApp: "WORLD METALIC" (+5541984659663)
+- LLM: Groq com modelo llama-3.3-70b-versatile
+
+## Regras de Código
+- Linguagem principal: JavaScript (Node.js)
+- Usar ES6+ (const/let, arrow functions, async/await)
+- Comentários em português brasileiro
+- Nomes de variáveis descritivos em camelCase
+- Nomes de arquivos em kebab-case
+- Tratamento de erro obrigatório em todas as chamadas de API
+- Logs estruturados com prefixo [Módulo]
+
+## Regras de Prompts (Agentes IA)
+- Prompts em português brasileiro
+- System prompts devem ser claros e estruturados
+- Sempre incluir regras do que o agente DEVE e NÃO DEVE fazer
+- Temperatura baixa (0.1-0.3) para tarefas de precisão
+- Temperatura média (0.2-0.4) para tarefas criativas controladas
+- Incluir exemplos quando possível (few-shot)
+
+## Legislação de Referência
+- Lei 14.133/2021 (Nova Lei de Licitações) — usar como padrão
+- Lei 8.666/93 — apenas para processos anteriores a 30/12/2023
+- LC 123/2006 — tratamento ME/EPP
+
+## Padrões de Mensagem WhatsApp
+- Máximo 4096 caracteres por mensagem
+- Usar *negrito* para títulos
+- Usar emojis com moderação (1-2 por mensagem)
+- Dividir mensagens longas em partes
+- Intervalo de 1-2 segundos entre mensagens
+
+## Estrutura de Arquivos
+- src/agents/ → Prompts dos agentes (Markdown)
+- src/config/ → Configurações (JSON)
+- src/flows/ → Fluxos de automação (JSON)
+- src/knowledge/ → Base de conhecimento (Markdown)
+- src/templates/ → Templates de documentos (Markdown)
+- src/services/ → Serviços e integrações (JavaScript)
+- src/utils/ → Funções utilitárias (JavaScript)
+- docs/ → Documentação (Markdown)
+- scripts/ → Scripts de setup e manutenção (Bash)

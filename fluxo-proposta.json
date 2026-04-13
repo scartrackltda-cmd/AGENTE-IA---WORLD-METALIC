@@ -1,0 +1,113 @@
+{
+  "flow_name": "Geração de Proposta",
+  "version": "1.0",
+  "description": "Fluxo para coletar dados e gerar proposta comercial/técnica",
+  "trigger": "gerar_proposta",
+  "steps": [
+    {
+      "id": "step_01",
+      "name": "Identificar Tipo de Proposta",
+      "type": "agent",
+      "agent": "wm-assistente",
+      "config": {
+        "user_message": "O cliente {{sender_name}} quer gerar uma proposta. Pergunte: 1) Tipo (comercial, técnica ou ambas), 2) Se já tem o edital em mãos.",
+        "temperature": 0.3
+      },
+      "next": "step_02"
+    },
+    {
+      "id": "step_02",
+      "name": "Verificar se Há Análise Prévia",
+      "type": "condition",
+      "conditions": [
+        {
+          "if": "{{has_previous_analysis}} == true",
+          "then": "step_04_coletar_dados_empresa"
+        },
+        {
+          "else": "step_03_solicitar_edital"
+        }
+      ]
+    },
+    {
+      "id": "step_03_solicitar_edital",
+      "name": "Solicitar Edital",
+      "type": "action",
+      "action": "send_whatsapp",
+      "config": {
+        "number": "{{sender}}",
+        "text": "Para gerar a proposta, preciso do edital. 📄\n\nPor favor, envie o PDF do edital que deseja participar.\n\nSe preferir, envie o link do edital no portal de licitações."
+      },
+      "next": "wait_for_edital"
+    },
+    {
+      "id": "step_04_coletar_dados_empresa",
+      "name": "Coletar Dados da Empresa",
+      "type": "action",
+      "action": "send_whatsapp",
+      "config": {
+        "number": "{{sender}}",
+        "text": "Ótimo! Agora preciso dos dados da empresa para a proposta:\n\n📝 Envie as seguintes informações:\n\n1️⃣ *Razão Social*\n2️⃣ *CNPJ*\n3️⃣ *Endereço completo*\n4️⃣ *Telefone da empresa*\n5️⃣ *E-mail*\n6️⃣ *Nome do representante legal*\n7️⃣ *CPF do representante*\n8️⃣ *Cargo do representante*\n\nPode enviar tudo em uma mensagem!"
+      },
+      "next": "wait_for_dados"
+    },
+    {
+      "id": "step_05_gerar_proposta",
+      "name": "Gerar Proposta com Agente",
+      "type": "agent",
+      "agent": "wm-propostas",
+      "config": {
+        "model": "llama-3.3-70b-versatile",
+        "temperature": 0.2,
+        "max_tokens": 4096,
+        "system_prompt": "{{agent_03_system_prompt}}",
+        "user_message": "Gere uma proposta {{tipo_proposta}} com base nos seguintes dados:\n\nEDITAL:\n{{analise_edital}}\n\nDADOS DA EMPRESA:\n{{dados_empresa}}\n\nUse o template apropriado da base de conhecimento.",
+        "knowledge_base": ["proposta-comercial", "proposta-tecnica", "checklist-documentos"]
+      },
+      "output": {
+        "proposta": "{{agent_response}}"
+      },
+      "next": "step_06_enviar_proposta"
+    },
+    {
+      "id": "step_06_enviar_proposta",
+      "name": "Enviar Proposta",
+      "type": "action",
+      "action": "send_whatsapp_parts",
+      "config": {
+        "number": "{{sender}}",
+        "messages": [
+          {
+            "text": "✅ *PROPOSTA GERADA COM SUCESSO!*\n\nAqui está o rascunho da sua proposta {{tipo_proposta}}:\n\n{{proposta_parte_1}}"
+          },
+          {
+            "text": "{{proposta_parte_2}}"
+          },
+          {
+            "text": "⚠️ *IMPORTANTE:*\n\n1. Esta proposta foi gerada por IA e precisa de *revisão humana* antes do envio.\n2. Campos marcados com [PREENCHER] precisam de dados reais.\n3. Campos marcados com [VERIFICAR] precisam de confirmação.\n4. Verifique se todos os valores estão corretos.\n5. Confira se a proposta atende todas as exigências do edital.\n\n📋 Deseja que eu gere o checklist de documentos necessários para este edital?"
+          }
+        ],
+        "delay_between_ms": 2000
+      },
+      "next": "step_07_salvar"
+    },
+    {
+      "id": "step_07_salvar",
+      "name": "Salvar Proposta",
+      "type": "action",
+      "action": "save_to_database",
+      "config": {
+        "collection": "propostas",
+        "data": {
+          "edital": "{{edital_numero}}",
+          "cliente": "{{sender}}",
+          "tipo": "{{tipo_proposta}}",
+          "proposta": "{{proposta}}",
+          "status": "rascunho",
+          "data_geracao": "{{now()}}"
+        }
+      },
+      "next": "end"
+    }
+  ]
+}
