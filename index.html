@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World Metalic — Especialista em Licitações Públicas</title>
+  <meta name="description" content="World Metalic — 17 anos assessorando empresas a vender para o Governo. Licitações públicas em todos os segmentos. (41) 99906-5901" />
+  <meta name="keywords" content="licitações públicas, assessoria licitações, editais, propostas, governo, worldmetalic" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:   '#07111f',
+            'navy2':'#0d1e35',
+            blue:   '#0d2850',
+            mid:    '#163360',
+            green:  '#00b359',
+            lgreen: '#00d96b',
+            purple: '#4f1d96',
+            violet: '#6d28d9',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Base ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #07111f; color: #fff; -webkit-font-smoothing: antialiased; }
+
+    /* ─── Gradients ─────────────────────────── */
+    .grad-hero    { background: linear-gradient(135deg, #07111f 0%, #0d2850 45%, #163360 70%, #4f1d96 100%); }
+    .grad-dark    { background: linear-gradient(180deg, #07111f 0%, #0d1e35 100%); }
+    .grad-section { background: #07111f; }
+
+    /* ─── Nav underline hover ────────────────── */
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#00b359; transition: width .3s; }
+    .nav-link:hover::after { width:100%; }
+
+    /* ─── Cards ─────────────────────────────── */
+    .card { transition: transform .3s ease, box-shadow .3s ease; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,179,89,.18); }
+
+    /* ─── CTA pulse ─────────────────────────── */
+    @keyframes pulse-cta {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0,179,89,.55); }
+      60%       { box-shadow: 0 0 0 18px rgba(0,179,89,0); }
+    }
+    .btn-cta { animation: pulse-cta 2.4s infinite; }
+
+    /* ─── Reveal on scroll ──────────────────── */
+    .reveal { opacity:0; transform:translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.in { opacity:1; transform:translateY(0); }
+
+    /* ─── Timeline dot ──────────────────────── */
+    .tl-item { position:relative; padding-left:1.5rem; }
+    .tl-item::before {
+      content:''; position:absolute; left:-5px; top:50%;
+      transform:translateY(-50%); width:12px; height:12px;
+      background:#00b359; border-radius:50%;
+      box-shadow: 0 0 0 4px rgba(0,179,89,.2);
+    }
+
+    /* ─── Floating WA bounce ────────────────── */
+    @keyframes wa-bounce {
+      0%,100% { transform:translateY(0); }
+      50%      { transform:translateY(-7px); }
+    }
+    .wa-float { animation: wa-bounce 2.2s ease-in-out infinite; }
+
+    /* ─── Chat widget ────────────────────────── */
+    .bubble-user { background:linear-gradient(135deg,#00b359,#00d96b); border-radius:18px 18px 4px 18px; }
+    .bubble-bot  { background:#1a2d4a; border:1px solid #243d60; border-radius:18px 18px 18px 4px; }
+
+    /* ─── Typing dots ────────────────────────── */
+    @keyframes blink { 0%,80%,100%{opacity:.15} 40%{opacity:1} }
+    .dot  { animation: blink 1.4s infinite; display:inline-block; width:7px; height:7px; border-radius:50%; background:#64748b; }
+    .dot:nth-child(2) { animation-delay:.2s; }
+    .dot:nth-child(3) { animation-delay:.4s; }
+
+    /* ─── Section badge ──────────────────────── */
+    .badge-green  { background:rgba(0,179,89,.12);  border:1px solid rgba(0,179,89,.3);  color:#00b359; }
+    .badge-purple { background:rgba(109,40,217,.12); border:1px solid rgba(109,40,217,.3); color:#a78bfa; }
+    .badge-gold   { background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.3); color:#fbbf24; }
+
+    /* ─── Divider line ───────────────────────── */
+    .divider { border:none; height:1px; background:rgba(255,255,255,.06); }
+
+    /* ─── Input fields ───────────────────────── */
+    .wm-input {
+      width:100%; padding:.75rem 1rem; border-radius:.75rem;
+      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+      color:#fff; font-size:.875rem; outline:none; transition: border-color .2s;
+    }
+    .wm-input::placeholder { color:#64748b; }
+    .wm-input:focus { border-color: rgba(0,179,89,.5); }
+
+    /* Scrollbar slim */
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); border-radius:10px; }
+  </style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     ① NAVBAR
+══════════════════════════════════════════════════════════ -->
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+  style="background:rgba(7,17,31,.92); backdrop-filter:blur(14px); border-bottom:1px solid rgba(0,179,89,.12);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 lg:h-[72px]">
+
+    <!-- Logo -->
+    <a href="#inicio" class="flex items-center gap-3 flex-shrink-0">
+      <div class="w-9 h-9 rounded-xl flex items-center justify-center"
+           style="background:linear-gradient(135deg,#00b359,#4f1d96);">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5
+               M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+        </svg>
+      </div>
+      <div>
+        <div class="font-black text-base text-white leading-none tracking-tight">World Metalic</div>
+        <div class="text-xs font-semibold leading-none mt-0.5" style="color:#00b359;">Especialista em Licitações</div>
+      </div>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden lg:flex items-center gap-7">
+      <a href="#servicos"   class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Serviços</a>
+      <a href="#sobre"      class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Sobre</a>
+      <a href="#historia"   class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">História</a>
+      <a href="#resultados" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Resultados</a>
+      <a href="#contato"    class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Contato</a>
+    </nav>
+
+    <!-- Botão WA desktop + hamburger mobile -->
+    <div class="flex items-center gap-3">
+      <a href="https://wa.me/5541999065901?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20falar%20com%20a%20equipe."
+         target="_blank"
+         class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold transition-all hover:scale-105"
+         style="background:linear-gradient(135deg,#00843f,#00b359); color:#fff;">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        WhatsApp
+      </a>
+      <button id="menu-btn" class="lg:hidden p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors">
+        <svg id="ico-open"  class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="ico-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden lg:hidden border-t" style="border-color:rgba(255,255,255,.06);">
+    <div class="px-4 py-4 space-y-1">
+      <a href="#servicos"   class="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/08 transition-colors">Serviços</a>
+      <a href="#sobre"      class="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/08 transition-colors">Sobre</a>
+      <a href="#historia"   class="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/08 transition-colors">História</a>
+      <a href="#resultados" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/08 transition-colors">Resultados</a>
+      <a href="#contato"    class="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/08 transition-colors">Contato</a>
+      <a href="https://wa.me/5541999065901" target="_blank"
+         class="flex items-center gap-2 mt-2 px-4 py-3 rounded-xl text-sm font-bold"
+         style="background:linear-gradient(135deg,#00843f,#00b359); color:#fff;">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar pelo WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     ② HERO
+══════════════════════════════════════════════════════════ -->
+<section id="inicio" class="grad-hero relative min-h-screen flex items-center pt-20 overflow-hidden">
+
+  <!-- Decorative circles -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div class="absolute" style="top:-10%;right:-8%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(109,40,217,.18),transparent 70%);"></div>
+    <div class="absolute" style="bottom:-10%;left:-8%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(0,179,89,.14),transparent 70%);"></div>
+    <!-- Grid -->
+    <svg class="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
+      <defs><pattern id="g" width="56" height="56" patternUnits="userSpaceOnUse">
+        <path d="M56 0L0 0 0 56" fill="none" stroke="white" stroke-width="0.8"/>
+      </pattern></defs>
+      <rect width="100%" height="100%" fill="url(#g)"/>
+    </svg>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+      <!-- Texto principal -->
+      <div class="text-center lg:text-left">
+
+        <!-- Badge -->
+        <span class="badge-green inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-7">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
+          17 anos de experiência — Licitações Públicas
+        </span>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-5xl lg:text-[56px] font-black leading-[1.08] tracking-tight mb-6">
+          Venda para o<br/>
+          <span style="background:linear-gradient(90deg,#00b359,#00d96b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+            Governo
+          </span><br/>
+          e lucre com<br/>
+          licitações
+        </h1>
+
+        <p class="text-gray-300 text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
+          Assessoria completa para empresas de <strong class="text-white">todos os segmentos</strong>
+          conquistarem contratos públicos com eficiência, segurança e resultado.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+          <a href="https://wa.me/5541999065901?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20a%20vender%20para%20o%20governo."
+             target="_blank"
+             class="btn-cta inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-black text-lg uppercase tracking-wide transition-all hover:brightness-110 hover:scale-[1.03]"
+             style="background:linear-gradient(135deg,#00843f,#00b359); color:#fff;">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            CLIQUE AQUI
+          </a>
+          <a href="#servicos"
+             class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-lg border-2 transition-all hover:bg-white/8 hover:scale-[1.03]"
+             style="border-color:rgba(255,255,255,.25); color:#fff;">
+            SAIBA MAIS
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+        </div>
+
+        <!-- Trust chips -->
+        <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            +500 empresas atendidas
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Todos os segmentos
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Atendimento humanizado
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats grid -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="card rounded-2xl p-7 border text-center" style="background:rgba(255,255,255,.04);border-color:rgba(0,179,89,.2);">
+          <div class="text-4xl font-black mb-1" style="color:#00b359;">17+</div>
+          <div class="text-sm text-gray-400 font-medium">Anos de experiência</div>
+        </div>
+        <div class="card rounded-2xl p-7 border text-center" style="background:rgba(255,255,255,.04);border-color:rgba(109,40,217,.3);">
+          <div class="text-4xl font-black mb-1" style="color:#a78bfa;">500+</div>
+          <div class="text-sm text-gray-400 font-medium">Empresas atendidas</div>
+        </div>
+        <div class="card rounded-2xl p-7 border text-center" style="background:rgba(255,255,255,.04);border-color:rgba(0,179,89,.2);">
+          <div class="text-3xl font-black mb-1" style="color:#00b359;">R$50M+</div>
+          <div class="text-sm text-gray-400 font-medium">Em contratos fechados</div>
+        </div>
+        <div class="card rounded-2xl p-7 border text-center" style="background:rgba(255,255,255,.04);border-color:rgba(109,40,217,.3);">
+          <div class="text-4xl font-black mb-1" style="color:#a78bfa;">72%</div>
+          <div class="text-sm text-gray-400 font-medium">Taxa de sucesso</div>
+        </div>
+        <!-- Wide card IA -->
+        <div class="col-span-2 card rounded-2xl p-5 border flex items-center gap-4"
+             style="background:linear-gradient(135deg,rgba(0,179,89,.08),rgba(109,40,217,.08));border-color:rgba(0,179,89,.25);">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+               style="background:linear-gradient(135deg,#00b359,#4f1d96);">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <div class="font-bold text-white text-sm">Agente IA disponível 24h</div>
+            <div class="text-xs text-gray-400 mt-0.5">Análise de editais e propostas em minutos</div>
+          </div>
+          <button onclick="toggleChat()"
+            class="flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold transition-all hover:scale-105"
+            style="background:linear-gradient(135deg,#00b359,#00d96b); color:#fff;">
+            Testar
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 pointer-events-none">
+    <span class="text-xs text-gray-500">Role para baixo</span>
+    <div class="w-6 h-10 rounded-full border-2 border-gray-600 flex justify-center pt-2">
+      <div class="w-1 h-2.5 rounded-full bg-green-400 animate-bounce"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     ③ SOLUÇÕES E RESULTADOS
+══════════════════════════════════════════════════════════ -->
+<section id="resultados" class="py-20 lg:py-28 grad-dark relative overflow-hidden">
+
+  <!-- Dot pattern background -->
+  <div class="pointer-events-none absolute inset-0 opacity-[0.03]">
+    <svg width="100%" height="100%">
+      <defs><pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.5" fill="white"/>
+      </pattern></defs>
+      <rect width="100%" height="100%" fill="url(#dots)"/>
+    </svg>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Heading -->
+    <div class="text-center mb-14">
+      <span class="badge-green inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-5">Soluções &amp; Resultados</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-4">
+        O que entregamos <span style="color:#00b359;">para você</span>
+      </h2>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+        Soluções completas para transformar sua empresa em uma fornecedora do Governo com resultados reais e mensuráveis.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-3 gap-6 mb-14">
+
+      <div class="reveal card rounded-2xl p-8 border" style="background:rgba(255,255,255,.03);border-color:rgba(0,179,89,.18);">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(0,179,89,.12);border:1px solid rgba(0,179,89,.25);">
+          <svg class="w-7 h-7" style="color:#00b359;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Monitoramento de Editais</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-5">Identificamos editais compatíveis com o perfil da sua empresa em todos os portais governamentais, em tempo real, todos os dias.</p>
+        <div class="pt-4 border-t" style="border-color:rgba(255,255,255,.07);">
+          <div class="text-2xl font-black" style="color:#00b359;">+1.200</div>
+          <div class="text-xs text-gray-500 mt-0.5">editais monitorados/mês</div>
+        </div>
+      </div>
+
+      <div class="reveal card rounded-2xl p-8 border" style="background:rgba(255,255,255,.03);border-color:rgba(109,40,217,.22);">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(109,40,217,.12);border:1px solid rgba(109,40,217,.25);">
+          <svg class="w-7 h-7" style="color:#a78bfa;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Análise de Editais</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-5">Analisamos o edital completo, identificamos requisitos, prazos, riscos e elaboramos checklist personalizado para sua participação.</p>
+        <div class="pt-4 border-t" style="border-color:rgba(255,255,255,.07);">
+          <div class="text-2xl font-black" style="color:#a78bfa;">98%</div>
+          <div class="text-xs text-gray-500 mt-0.5">de precisão nas análises</div>
+        </div>
+      </div>
+
+      <div class="reveal card rounded-2xl p-8 border" style="background:rgba(255,255,255,.03);border-color:rgba(245,158,11,.2);">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);">
+          <svg class="w-7 h-7 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Elaboração de Propostas</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-5">Montamos propostas técnicas e comerciais competitivas, com toda a documentação exigida para maximizar suas chances de vitória.</p>
+        <div class="pt-4 border-t" style="border-color:rgba(255,255,255,.07);">
+          <div class="text-2xl font-black text-yellow-400">72%</div>
+          <div class="text-xs text-gray-500 mt-0.5">taxa de sucesso média</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner CTA -->
+    <div class="reveal rounded-3xl p-10 lg:p-14 text-center relative overflow-hidden"
+         style="background:linear-gradient(135deg,#0d2850,#163360,#2d1b5c);">
+      <!-- Hex pattern -->
+      <div class="pointer-events-none absolute inset-0 opacity-10">
+        <svg width="100%" height="100%">
+          <defs><pattern id="hex" x="0" y="0" width="48" height="41.6" patternUnits="userSpaceOnUse">
+            <polygon points="24,0 48,12 48,29.6 24,41.6 0,29.6 0,12" fill="none" stroke="white" stroke-width=".6"/>
+          </pattern></defs>
+          <rect width="100%" height="100%" fill="url(#hex)"/>
+        </svg>
+      </div>
+      <div class="relative">
+        <h3 class="text-2xl lg:text-4xl font-black text-white mb-4">Pronto para vender para o Governo?</h3>
+        <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">Fale agora com nossa equipe e descubra como a World Metalic pode transformar sua empresa em fornecedora governamental.</p>
+        <a href="https://wa.me/5541999065901?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20licitações%20públicas."
+           target="_blank"
+           class="btn-cta inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-xl font-black uppercase tracking-wide transition-all hover:brightness-110 hover:scale-[1.03]"
+           style="background:linear-gradient(135deg,#00843f,#00b359); color:#fff;">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          QUERO COMEÇAR AGORA
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     ④ VISÃO / MISSÃO / VALORES
+══════════════════════════════════════════════════════════ -->
+<section id="sobre" class="py-20 lg:py-28 grad-section">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-14">
+      <span class="badge-purple inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-5">Quem somos</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-4">
+        Nossa essência e <span style="color:#a78bfa;">propósito</span>
+      </h2>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">Os pilares que guiam cada ação da World Metalic há mais de 17 anos.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Visão -->
+      <div class="reveal card rounded-2xl p-8 border relative overflow-hidden"
+           style="background:linear-gradient(160deg,rgba(109,40,217,.07),rgba(7,17,31,.95));border-color:rgba(109,40,217,.28);">
+        <div class="absolute -top-6 -right-6 w-28 h-28 rounded-full opacity-15" style="background:#6d28d9;"></div>
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
+             style="background:linear-gradient(135deg,#4f1d96,#6d28d9);">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          </svg>
+        </div>
+        <div class="text-xs font-bold uppercase tracking-widest mb-2" style="color:#a78bfa;">Nossa Visão</div>
+        <h3 class="text-xl font-black text-white mb-4">Liderança nacional em assessoria para licitações</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Ser reconhecida como a principal empresa do Brasil em assessoria licitatória, democratizando o acesso das empresas ao mercado governamental.</p>
+      </div>
+
+      <!-- Missão -->
+      <div class="reveal card rounded-2xl p-8 border relative overflow-hidden"
+           style="background:linear-gradient(160deg,rgba(0,179,89,.07),rgba(7,17,31,.95));border-color:rgba(0,179,89,.28);">
+        <div class="absolute -top-6 -right-6 w-28 h-28 rounded-full opacity-15" style="background:#00b359;"></div>
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
+             style="background:linear-gradient(135deg,#00692e,#00b359);">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <div class="text-xs font-bold uppercase tracking-widest mb-2" style="color:#00b359;">Nossa Missão</div>
+        <h3 class="text-xl font-black text-white mb-4">Abrir portas para o mercado governamental</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Assessorar empresas de todos os segmentos a conquistar contratos públicos com excelência, transparência e resultados concretos, crescendo juntos.</p>
+      </div>
+
+      <!-- Valores -->
+      <div class="reveal card rounded-2xl p-8 border relative overflow-hidden"
+           style="background:linear-gradient(160deg,rgba(245,158,11,.07),rgba(7,17,31,.95));border-color:rgba(245,158,11,.25);">
+        <div class="absolute -top-6 -right-6 w-28 h-28 rounded-full opacity-15" style="background:#f59e0b;"></div>
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
+             style="background:linear-gradient(135deg,#b45309,#f59e0b);">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </div>
+        <div class="text-xs font-bold uppercase tracking-widest mb-2 text-yellow-400">Nossos Valores</div>
+        <h3 class="text-xl font-black text-white mb-4">Princípios que guiam cada ação</h3>
+        <ul class="space-y-2.5">
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-yellow-400"></span>Transparência total
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-yellow-400"></span>Compromisso com resultados
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-yellow-400"></span>Ética e legalidade absoluta
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-yellow-400"></span>Inovação contínua
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-yellow-400"></span>Parceria de longo prazo
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑤ NOSSA HISTÓRIA — 17 ANOS
+══════════════════════════════════════════════════════════ -->
+<section id="historia" class="py-20 lg:py-28 grad-dark relative overflow-hidden">
+
+  <!-- Decorative "17" -->
+  <div class="pointer-events-none absolute right-0 top-0 bottom-0 flex items-center overflow-hidden select-none"
+       style="opacity:.03;">
+    <span style="font-size:28vw;font-weight:900;line-height:1;color:#fff;">17</span>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+      <!-- Texto + Timeline -->
+      <div>
+        <span class="badge-green inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6">Nossa História</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-6">
+          <span style="color:#00b359;">17 anos</span> transformando<br/>
+          empresas em<br/>fornecedoras do Governo
+        </h2>
+        <p class="text-gray-400 text-lg leading-relaxed mb-5">
+          Fundada em 2007, a World Metalic nasceu com uma missão clara: simplificar o acesso das empresas brasileiras ao mercado de licitações públicas.
+        </p>
+        <p class="text-gray-400 leading-relaxed mb-9">
+          Ao longo de mais de 17 anos, construímos uma equipe de especialistas que domina a Lei 14.133/2021 e a Lei 8.666/93 em todos os segmentos — de materiais de construção a tecnologia e saúde. Hoje operamos com Inteligência Artificial para agilizar análises e maximizar resultados.
+        </p>
+
+        <!-- Timeline -->
+        <div class="border-l-2 pl-6 space-y-5" style="border-color:rgba(0,179,89,.25);">
+          <div class="tl-item">
+            <div class="text-xs font-bold mb-0.5" style="color:#00b359;">2007</div>
+            <div class="text-sm font-bold text-white">Fundação da World Metalic</div>
+            <div class="text-xs text-gray-500">Início das operações em assessoria de licitações</div>
+          </div>
+          <div class="tl-item">
+            <div class="text-xs font-bold mb-0.5" style="color:#00b359;">2012</div>
+            <div class="text-sm font-bold text-white">Expansão nacional</div>
+            <div class="text-xs text-gray-500">Atendimento em todo o território brasileiro</div>
+          </div>
+          <div class="tl-item">
+            <div class="text-xs font-bold mb-0.5" style="color:#00b359;">2021</div>
+            <div class="text-sm font-bold text-white">Nova Lei de Licitações</div>
+            <div class="text-xs text-gray-500">Adaptação completa à Lei 14.133/2021</div>
+          </div>
+          <div class="tl-item">
+            <div class="text-xs font-bold mb-0.5" style="color:#00b359;">2024</div>
+            <div class="text-sm font-bold text-white">Lançamento do Agente IA</div>
+            <div class="text-xs text-gray-500">Inteligência artificial para análise de editais e propostas 24h</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Números -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="reveal col-span-2 rounded-2xl p-10 text-center border"
+             style="background:linear-gradient(135deg,rgba(0,179,89,.1),rgba(13,30,53,.9));border-color:rgba(0,179,89,.28);">
+          <div class="text-8xl font-black leading-none mb-2" style="color:#00b359;">17</div>
+          <div class="text-xl font-bold text-white">Anos de Excelência</div>
+          <div class="text-sm text-gray-400 mt-1">Liderando o setor de assessoria em licitações</div>
+        </div>
+        <div class="reveal rounded-2xl p-6 text-center border" style="background:rgba(255,255,255,.03);border-color:rgba(109,40,217,.22);">
+          <div class="text-3xl font-black mb-1" style="color:#a78bfa;">+50</div>
+          <div class="text-xs text-gray-400">Segmentos atendidos</div>
+        </div>
+        <div class="reveal rounded-2xl p-6 text-center border" style="background:rgba(255,255,255,.03);border-color:rgba(245,158,11,.2);">
+          <div class="text-3xl font-black mb-1 text-yellow-400">+500</div>
+          <div class="text-xs text-gray-400">Clientes ativos</div>
+        </div>
+        <div class="reveal col-span-2 rounded-2xl p-5 border flex items-center gap-4"
+             style="background:rgba(255,255,255,.03);border-color:rgba(0,179,89,.18);">
+          <span class="text-4xl">🏆</span>
+          <div>
+            <div class="font-bold text-white">Referência no mercado</div>
+            <div class="text-sm text-gray-400">Uma das principais assessorias de licitações do Brasil</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑥ NOSSOS SERVIÇOS
+══════════════════════════════════════════════════════════ -->
+<section id="servicos" class="py-20 lg:py-28 grad-section">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-14">
+      <span class="badge-green inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-5">Nossos Serviços</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-4">
+        Tudo que sua empresa precisa<br/>para <span style="color:#00b359;">ganhar licitações</span>
+      </h2>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">Do monitoramento à entrega da proposta, cobrimos todas as etapas do processo licitatório.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- S1 -->
+      <div class="reveal card rounded-2xl p-7 border group" style="background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.07);">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"
+             style="background:rgba(0,179,89,.12);border:1px solid rgba(0,179,89,.25);">
+          <svg class="w-6 h-6" style="color:#00b359;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2">Monitoramento de Editais</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Alertas automáticos de licitações compatíveis com seu negócio em portais municipais, estaduais e federais, diariamente.</p>
+      </div>
+
+      <!-- S2 -->
+      <div class="reveal card rounded-2xl p-7 border group" style="background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.07);">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"
+             style="background:rgba(109,40,217,.12);border:1px solid rgba(109,40,217,.25);">
+          <svg class="w-6 h-6" style="color:#a78bfa;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2">Análise de Editais</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Interpretação completa do edital: requisitos, habilitação, critérios, prazos e pontos de atenção para maximizar sua participação.</p>
+      </div>
+
+      <!-- S3 -->
+      <div class="reveal card rounded-2xl p-7 border group" style="background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.07);">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"
+             style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);">
+          <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2">Elaboração de Propostas</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Proposta técnica e comercial dentro das exigências legais, com redação persuasiva e documentação completa para vencer.</p>
+      </div>
+
+      <!-- S4 -->
+      <div class="reveal card rounded-2xl p-7 border group" style="background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.07);">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"
+             style="background:rgba(0,179,89,.12);border:1px solid rgba(0,179,89,.25);">
+          <svg class="w-6 h-6" style="color:#00b359;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2">Regularização Documental</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Checklist personalizado e orientação para manter seus documentos de habilitação sempre em dia para não perder oportunidades.</p>
+      </div>
+
+      <!-- S5 -->
+      <div class="reveal card rounded-2xl p-7 border group" style="background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.07);">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"
+             style="background:rgba(109,40,217,.12);border:1px solid rgba(109,40,217,.25);">
+          <svg class="w-6 h-6" style="color:#a78bfa;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2">Consultoria Estratégica</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Orientação especializada em Lei 14.133/2021, Lei 8.666/93 e LC 123/2006 para ME/EPP com todos os benefícios previstos em lei.</p>
+      </div>
+
+      <!-- S6 IA -->
+      <div class="reveal card rounded-2xl p-7 border group relative overflow-hidden"
+           style="background:linear-gradient(135deg,rgba(0,179,89,.08),rgba(109,40,217,.1));border-color:rgba(0,179,89,.3);">
+        <div class="absolute top-3 right-3 px-2 py-0.5 rounded-full text-xs font-black"
+             style="background:linear-gradient(135deg,#00b359,#4f1d96); color:#fff;">NOVO</div>
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"
+             style="background:linear-gradient(135deg,rgba(0,179,89,.2),rgba(109,40,217,.2));border:1px solid rgba(0,179,89,.35);">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2">Agente IA 24 Horas</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">Inteligência Artificial disponível o tempo todo para responder dúvidas, analisar editais e gerar propostas automaticamente.</p>
+        <button onclick="toggleChat()"
+          class="inline-block text-xs font-bold px-5 py-2.5 rounded-xl transition-all hover:scale-105"
+          style="background:linear-gradient(135deg,#00b359,#4f1d96); color:#fff;">
+          Conversar com o Agente
+        </button>
+      </div>
+
+    </div>
+
+    <!-- CONHEÇA MAIS -->
+    <div class="text-center mt-12">
+      <a href="https://wa.me/5541999065901?text=Quero%20conhecer%20mais%20sobre%20os%20servi%C3%A7os%20da%20World%20Metalic"
+         target="_blank"
+         class="inline-flex items-center gap-2 px-9 py-4 rounded-2xl font-bold text-lg border-2 transition-all hover:scale-[1.04] hover:bg-white/5"
+         style="border-color:rgba(0,179,89,.45); color:#00b359;">
+        CONHEÇA MAIS
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑦ CONTATO
+══════════════════════════════════════════════════════════ -->
+<section id="contato" class="py-20 lg:py-28 grad-dark relative overflow-hidden">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-14">
+      <span class="badge-green inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-5">Entre em Contato</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-4">
+        Fale com nossa <span style="color:#00b359;">equipe agora</span>
+      </h2>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto">Atendimento personalizado seg–sex 8h–18h. Fora do horário? Nosso Agente IA responde 24h.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+      <!-- Canais -->
+      <div class="space-y-4">
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/5541999065901?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20a%20World%20Metalic."
+           target="_blank"
+           class="card flex items-center gap-5 p-6 rounded-2xl border transition-all"
+           style="background:rgba(0,179,89,.06);border-color:rgba(0,179,89,.28);">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+               style="background:linear-gradient(135deg,#00692e,#00b359);">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#00b359;">WhatsApp</div>
+            <div class="text-xl font-black text-white">(41) 99906-5901</div>
+            <div class="text-sm text-gray-400">Clique para conversar agora</div>
+          </div>
+          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+
+        <!-- Telefone -->
+        <a href="tel:+5541999065901"
+           class="card flex items-center gap-5 p-6 rounded-2xl border transition-all"
+           style="background:rgba(109,40,217,.06);border-color:rgba(109,40,217,.28);">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+               style="background:linear-gradient(135deg,#4f1d96,#6d28d9);">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#a78bfa;">Telefone</div>
+            <div class="text-xl font-black text-white">(41) 99906-5901</div>
+            <div class="text-sm text-gray-400">Seg–Sex, 8h às 18h</div>
+          </div>
+          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+
+        <!-- IA -->
+        <button onclick="toggleChat()"
+           class="card w-full flex items-center gap-5 p-6 rounded-2xl border transition-all text-left"
+           style="background:linear-gradient(135deg,rgba(0,179,89,.07),rgba(109,40,217,.07));border-color:rgba(0,179,89,.28);">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+               style="background:linear-gradient(135deg,#00b359,#4f1d96);">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#00b359;">Agente IA — 24h</div>
+            <div class="text-xl font-black text-white">WM Assistente</div>
+            <div class="text-sm text-gray-400">Disponível agora para te ajudar</div>
+          </div>
+          <span class="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full flex-shrink-0"
+                style="background:rgba(0,179,89,.18); color:#00b359;">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>Online
+          </span>
+        </button>
+      </div>
+
+      <!-- Formulário -->
+      <div class="reveal rounded-2xl p-8 border" style="background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08);">
+        <h3 class="text-xl font-bold text-white mb-6">Deixe seu contato</h3>
+        <form id="contact-form" onsubmit="handleForm(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">Nome *</label>
+            <input type="text" name="nome" placeholder="Seu nome completo" required class="wm-input" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">WhatsApp *</label>
+            <input type="tel" name="tel" placeholder="(00) 00000-0000" required class="wm-input" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">Empresa</label>
+            <input type="text" name="empresa" placeholder="Nome da empresa" class="wm-input" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">Mensagem</label>
+            <textarea name="msg" rows="3" placeholder="Como podemos ajudar?" class="wm-input resize-none"></textarea>
+          </div>
+          <button type="submit"
+            class="btn-cta w-full py-4 rounded-xl font-black text-white uppercase tracking-wide transition-all hover:brightness-110 hover:scale-[1.02]"
+            style="background:linear-gradient(135deg,#00843f,#00b359);">
+            ENVIAR PELO WHATSAPP
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑧ FOOTER
+══════════════════════════════════════════════════════════ -->
+<footer style="background:#04090f;border-top:1px solid rgba(255,255,255,.06);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+
+      <!-- Marca -->
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+               style="background:linear-gradient(135deg,#00b359,#4f1d96);">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+          </div>
+          <div>
+            <div class="font-black text-xl text-white leading-tight">World Metalic</div>
+            <div class="text-xs font-semibold" style="color:#00b359;">Especialista em Licitações</div>
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed max-w-xs mb-6">
+          17 anos assessorando empresas brasileiras a conquistar contratos com o Governo. Expertise, transparência e resultados comprovados.
+        </p>
+        <a href="https://wa.me/5541999065901" target="_blank"
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all hover:scale-105"
+           style="background:linear-gradient(135deg,#00843f,#00b359); color:#fff;">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          (41) 99906-5901
+        </a>
+      </div>
+
+      <!-- Navegação -->
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-gray-600 mb-4">Navegação</div>
+        <ul class="space-y-2.5">
+          <li><a href="#inicio"     class="text-gray-400 hover:text-white text-sm transition-colors">Início</a></li>
+          <li><a href="#servicos"   class="text-gray-400 hover:text-white text-sm transition-colors">Serviços</a></li>
+          <li><a href="#sobre"      class="text-gray-400 hover:text-white text-sm transition-colors">Sobre nós</a></li>
+          <li><a href="#historia"   class="text-gray-400 hover:text-white text-sm transition-colors">Nossa História</a></li>
+          <li><a href="#resultados" class="text-gray-400 hover:text-white text-sm transition-colors">Resultados</a></li>
+          <li><a href="#contato"    class="text-gray-400 hover:text-white text-sm transition-colors">Contato</a></li>
+        </ul>
+      </div>
+
+      <!-- Serviços -->
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-gray-600 mb-4">Serviços</div>
+        <ul class="space-y-2.5">
+          <li><span class="text-gray-400 text-sm">Monitoramento de Editais</span></li>
+          <li><span class="text-gray-400 text-sm">Análise de Editais</span></li>
+          <li><span class="text-gray-400 text-sm">Elaboração de Propostas</span></li>
+          <li><span class="text-gray-400 text-sm">Regularização Documental</span></li>
+          <li><span class="text-gray-400 text-sm">Consultoria Estratégica</span></li>
+          <li>
+            <button onclick="toggleChat()" class="text-sm font-semibold transition-colors" style="color:#00b359;">
+              Agente IA 24h ✨
+            </button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr class="divider mb-6" />
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-600">
+      <div>© 2024 World Metalic. Todos os direitos reservados.</div>
+      <div>CNPJ: <span class="text-gray-400 font-medium">19.706.125/0001-60</span></div>
+      <div>Desenvolvido com ❤️ e Inteligência Artificial</div>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FLOATING WhatsApp — AGENTE IA (canto inferior direito)
+     ⚠️ NÃO ALTERAR — mantido exatamente como especificado
+══════════════════════════════════════════════════════════ -->
+<a id="wa-agent-float"
+   href="https://api.whatsapp.com/send?phone=5541984659663&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20conversar%20com%20o%20agente."
+   target="_blank"
+   class="fixed z-50 flex items-center gap-3 px-4 py-3 rounded-2xl shadow-2xl wa-float transition-all hover:scale-105"
+   style="bottom:88px; right:24px; background:linear-gradient(135deg,#00843f,#00b359); max-width:260px;"
+   title="Fale com nosso Agente de IA agora">
+  <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(255,255,255,.2);">
+    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </div>
+  <div class="leading-tight">
+    <div class="text-white font-black text-xs">Fale com nosso</div>
+    <div class="text-white font-black text-sm">Agente de IA agora</div>
+    <div class="flex items-center gap-1 mt-0.5">
+      <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+      <span class="text-green-100 text-xs font-medium">Online 24h</span>
+    </div>
+  </div>
+</a>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     CHAT WIDGET TOGGLE + JANELA
+══════════════════════════════════════════════════════════ -->
+
+<!-- Botão toggle (ícone IA) -->
+<button id="chat-toggle" onclick="toggleChat()"
+  class="fixed z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110"
+  style="bottom:24px; right:24px; background:linear-gradient(135deg,#4f1d96,#6d28d9);"
+  title="Chat com Agente IA">
+  <svg id="ico-chat-open" class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+  </svg>
+  <svg id="ico-chat-close" class="hidden w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+  </svg>
+  <span class="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full border-2 border-white bg-green-400 animate-pulse"></span>
+</button>
+
+<!-- Janela do chat -->
+<div id="chat-widget"
+  class="fixed z-50 w-80 sm:w-96 rounded-3xl overflow-hidden shadow-2xl border hidden flex-col"
+  style="bottom:90px; right:24px; background:#0d1e35; border-color:rgba(109,40,217,.45); max-height:540px;">
+
+  <!-- Header -->
+  <div class="flex items-center gap-3 px-5 py-4" style="background:linear-gradient(135deg,#07111f,#163360);">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+         style="background:linear-gradient(135deg,#00b359,#4f1d96);">
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+      </svg>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="font-bold text-white text-sm">WM Assistente</div>
+      <div class="flex items-center gap-1.5 text-xs text-gray-400">
+        <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
+        Online agora · World Metalic
+      </div>
+    </div>
+    <button onclick="toggleChat()" class="p-1 rounded-lg hover:bg-white/10 transition-colors text-gray-400 hover:text-white">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- Mensagens -->
+  <div id="chat-messages" class="flex-1 overflow-y-auto px-4 py-4 space-y-3"
+       style="min-height:300px; max-height:360px;"></div>
+
+  <!-- Input -->
+  <div class="px-4 py-3 border-t" style="border-color:rgba(255,255,255,.07); background:rgba(0,0,0,.25);">
+    <div class="flex items-end gap-2">
+      <textarea id="chat-input" rows="1"
+        placeholder="Digite sua mensagem..."
+        onkeydown="handleKey(event)"
+        oninput="autoResize(this)"
+        class="flex-1 resize-none px-4 py-3 rounded-2xl text-sm text-white outline-none transition-all"
+        style="background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.11); max-height:100px; line-height:1.4;">
+      </textarea>
+      <button onclick="sendMsg()"
+        class="w-10 h-10 rounded-2xl flex items-center justify-center transition-all hover:scale-110 flex-shrink-0"
+        style="background:linear-gradient(135deg,#00b359,#4f1d96);">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+        </svg>
+      </button>
+    </div>
+    <p class="text-center mt-2 text-xs text-gray-700">Agente IA · World Metalic · OpenClaw</p>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════════ -->
+<script>
+/* ─── Config ─────────────────────────── */
+const OC_URL     = 'http://187.127.18.17:48627';
+const OC_PROJECT = 'openclaw-h3ur';
+const WA_NUM     = '5541999065901';
+
+/* ─── Mobile menu ─────────────────────── */
+const menuBtn    = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+document.getElementById('menu-btn').addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('hidden');
+  document.getElementById('ico-open').classList.toggle('hidden', !open);
+  document.getElementById('ico-close').classList.toggle('hidden', open);
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.add('hidden');
+  document.getElementById('ico-open').classList.remove('hidden');
+  document.getElementById('ico-close').classList.add('hidden');
+}));
+
+/* ─── Scroll reveal ───────────────────── */
+const ro = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) e.target.classList.add('in');
+}), { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+/* ─── Navbar scroll tint ──────────────── */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.borderBottomColor =
+    window.scrollY > 60 ? 'rgba(0,179,89,.22)' : 'rgba(0,179,89,.12)';
+});
+
+/* ─── Chat state ──────────────────────── */
+let chatOpen    = false;
+let chatHistory = [];
+let isBusy      = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const w  = document.getElementById('chat-widget');
+  const o  = document.getElementById('ico-chat-open');
+  const c  = document.getElementById('ico-chat-close');
+  const fa = document.getElementById('wa-agent-float');
+
+  if (chatOpen) {
+    w.classList.remove('hidden'); w.classList.add('flex');
+    o.classList.add('hidden');    c.classList.remove('hidden');
+    if (fa) { fa.style.opacity = '0'; fa.style.pointerEvents = 'none'; }
+    if (!chatHistory.length) initChat();
+    setTimeout(() => document.getElementById('chat-input').focus(), 120);
+  } else {
+    w.classList.add('hidden'); w.classList.remove('flex');
+    o.classList.remove('hidden'); c.classList.add('hidden');
+    if (fa) { fa.style.opacity = '1'; fa.style.pointerEvents = 'auto'; }
+  }
+}
+
+/* Mensagem de boas-vindas */
+function initChat() {
+  addBubble('bot',
+    'Olá! 👋 Sou a WM Assistente, da World Metalic.\n\n' +
+    'Posso te ajudar com:\n' +
+    '1️⃣ Monitorar editais para sua empresa\n' +
+    '2️⃣ Analisar um edital específico\n' +
+    '3️⃣ Montar uma proposta comercial\n' +
+    '4️⃣ Tirar dúvidas sobre licitações\n\n' +
+    'Como posso te ajudar hoje?'
+  );
+}
+
+/* Adiciona bolha de mensagem */
+function addBubble(role, text) {
+  const box = document.getElementById('chat-messages');
+  const row = document.createElement('div');
+  row.className = role === 'user' ? 'flex justify-end' : 'flex justify-start';
+  const b = document.createElement('div');
+  b.className = role === 'user'
+    ? 'bubble-user px-4 py-3 text-sm text-white max-w-[80%]'
+    : 'bubble-bot  px-4 py-3 text-sm text-gray-200 max-w-[80%]';
+  b.style.whiteSpace = 'pre-wrap';
+  b.style.wordBreak  = 'break-word';
+  b.textContent = text;
+  row.appendChild(b);
+  box.appendChild(row);
+  box.scrollTop = box.scrollHeight;
+  chatHistory.push({ role, content: text });
+}
+
+/* Indicador de digitação */
+function showTyping() {
+  const box = document.getElementById('chat-messages');
+  const row = document.createElement('div');
+  row.id = 'typing'; row.className = 'flex justify-start';
+  row.innerHTML = '<div class="bubble-bot px-4 py-3 flex items-center gap-1.5">'
+    + '<span class="dot"></span><span class="dot"></span><span class="dot"></span>'
+    + '</div>';
+  box.appendChild(row);
+  box.scrollTop = box.scrollHeight;
+}
+function hideTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+/* Enviar mensagem */
+async function sendMsg() {
+  const inp  = document.getElementById('chat-input');
+  const text = inp.value.trim();
+  if (!text || isBusy) return;
+  inp.value = ''; inp.style.height = 'auto';
+  addBubble('user', text);
+  isBusy = true; showTyping();
+  try {
+    const reply = await Promise.race([
+      callOpenClaw(text),
+      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 8000))
+    ]);
+    hideTyping(); addBubble('bot', reply);
+  } catch {
+    hideTyping(); addBubble('bot', fallback(text));
+  }
+  isBusy = false;
+}
+
+/* Chamada OpenClaw */
+async function callOpenClaw(msg) {
+  const res = await fetch(`${OC_URL}/api/v1/run`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    mode: 'cors',
+    body: JSON.stringify({
+      project: OC_PROJECT, agent: 'atendimento',
+      input: { message: msg, sender_number: 'web', sender_name: 'Visitante', type: 'text', timestamp: new Date().toISOString() }
+    })
+  });
+  if (!res.ok) throw new Error('api');
+  const d = await res.json();
+  return d.output || d.response || d.message || 'Como posso ajudar mais?';
+}
+
+/* Fallback local inteligente */
+function fallback(t) {
+  t = t.toLowerCase();
+  if (t.match(/monitor|edital|buscar|alerta/))
+    return 'Para monitoramento de editais nossa equipe vai:\n\n✅ Mapear o perfil da sua empresa\n✅ Identificar editais compatíveis diariamente\n✅ Enviar alertas no WhatsApp\n\nFale agora:\n📲 (41) 99906-5901';
+  if (t.match(/propost|elabor|prepar/))
+    return 'Para elaborar propostas precisamos:\n\n📄 Edital (PDF ou link)\n🏢 Dados da empresa\n📋 Atestados de capacidade técnica\n\nEnvie pelo WhatsApp:\n📲 (41) 99906-5901';
+  if (t.match(/lei|14133|8666|legal|juridic/))
+    return 'Trabalhamos com:\n\n📚 Lei 14.133/2021 — Nova Lei de Licitações\n📚 Lei 8.666/93 — processos anteriores\n📚 LC 123/2006 — benefícios ME/EPP\n\nConsultoria especializada:\n📲 (41) 99906-5901';
+  if (t.match(/preco|valor|plano|custo|quanto/))
+    return 'Nossos planos são personalizados!\n\nFale com nossa equipe para uma proposta sob medida:\n📲 (41) 99906-5901\n\nAtendimento: Seg–Sex, 8h–18h';
+  if (t.match(/ol[aá]|oi|bom dia|boa tarde|boa noite|hello/))
+    return 'Olá! 😊 Seja bem-vindo à World Metalic!\n\nO que você precisa?\n\n1️⃣ Monitorar editais\n2️⃣ Analisar um edital\n3️⃣ Elaborar proposta\n4️⃣ Tirar dúvidas';
+  return `Entendi! Para te ajudar melhor sobre "${t.substring(0,40)}...", nossa equipe está disponível:\n\n📲 WhatsApp: (41) 99906-5901\n🕐 Seg–Sex, 8h–18h\n\nFora do horário? Nosso Agente IA pelo WhatsApp responde 24h!`;
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+}
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+}
+
+/* ─── Formulário contato → WhatsApp ───── */
+function handleForm(e) {
+  e.preventDefault();
+  const f = e.target;
+  const text = encodeURIComponent(
+    `Olá! Vim pelo site da World Metalic.\n\n` +
+    `👤 Nome: ${f.nome.value}\n` +
+    `📱 WhatsApp: ${f.tel.value}\n` +
+    `🏢 Empresa: ${f.empresa.value}\n` +
+    `💬 Mensagem: ${f.msg.value}`
+  );
+  window.open(`https://wa.me/${WA_NUM}?text=${text}`, '_blank');
+}
+</script>
+
+</body>
+</html>
