@@ -31,6 +31,10 @@ const AGENTS = [
   { id: 'wm-gestor',        name: 'Gestor WM',     key: 'wm-key-gestor',        worker: workerGestor        },
 ];
 
+// Maps our fixed agent IDs to the real agentId assigned by the backend
+// (backend assigns random IDs like agent_1234_abcd when creating new agents)
+const realAgentIds = {};
+
 // Estado compartilhado entre agentes (memória do ciclo atual)
 const shared = {
   containersOk: true,
@@ -93,7 +97,10 @@ async function joinAgent(agent) {
       detail:   'Iniciando...',
     });
     if (r.body && r.body.ok) {
-      log(`[JOIN] ${agent.name} registrado ✅`);
+      // Store the real agentId returned by backend (may differ from our fixed id)
+      const realId = r.body.agentId || agent.id;
+      realAgentIds[agent.id] = realId;
+      log(`[JOIN] ${agent.name} registrado ✅ (id: ${realId})`);
     } else {
       log(`[JOIN] ${agent.name}: ${JSON.stringify(r.body)}`);
     }
@@ -103,14 +110,29 @@ async function joinAgent(agent) {
 }
 
 async function pushAgent(agent, state, detail) {
+  // Use the real agentId assigned by the backend (or fall back to our fixed id)
+  const agentId = realAgentIds[agent.id] || agent.id;
   try {
-    await request(`${OFFICE_URL}/agent-push`, { method: 'POST' }, {
-      agentId: agent.id,
+    const r = await request(`${OFFICE_URL}/agent-push`, { method: 'POST' }, {
+      agentId,
       joinKey: agent.key,
       state,
       detail,
       name: agent.name,
     });
+    // If agent not found (404) or key mismatch (403), re-join and retry
+    if (r.status === 404 || r.status === 403) {
+      log(`[PUSH] ${agent.name} não registrado (${r.status}) — re-juntando...`);
+      await joinAgent(agent);
+      const newId = realAgentIds[agent.id] || agent.id;
+      await request(`${OFFICE_URL}/agent-push`, { method: 'POST' }, {
+        agentId: newId,
+        joinKey: agent.key,
+        state,
+        detail,
+        name: agent.name,
+      });
+    }
   } catch (e) {
     log(`[PUSH] ${agent.name} erro: ${e.message}`);
   }
@@ -391,7 +413,17 @@ async function runCycle() {
   // Collect shared data first so all workers have fresh info
   await Promise.allSettled([collectEvolutionData(), collectBotLogs(), checkSite()]);
 
-  // Then run all workers in parallel
+  // Re-join every 10 cycles (~5 min) to prevent agents from being cleaned up
+  // Always rejoin on cycle 1 (startup) and every 10th cycle after that
+  if (shared.cycle === 1 || shared.cycle % 10 === 0) {
+    log('[REJOIN] Renovando registro dos agentes...');
+    for (const agent of AGENTS) {
+      await joinAgent(agent);
+      await new Promise(r => setTimeout(r, 200));
+    }
+  }
+
+  // Run all workers in parallel
   await Promise.allSettled(AGENTS.map(a => a.worker(a)));
 }
 
