@@ -64,6 +64,102 @@
         "daily_report": "0 8 * * *",
         "urgent_check": "0 * * * *"
       }
+    },
+    {
+      "id": "wm-ti-manutencao",
+      "name": "TI - Manutenção & Infra",
+      "description": "Monitora e mantém site, bot e todos os serviços rodando",
+      "prompt_file": "src/agents/05-wm-ti-manutencao.md",
+      "temperature": 0.2,
+      "max_tokens": 2048,
+      "triggers": ["manutencao", "status", "rodando", "infra"],
+      "priority": 5,
+      "active": true,
+      "scope": "internal"
+    },
+    {
+      "id": "wm-ti-site",
+      "name": "TI - Visual do Site",
+      "description": "Cuida exclusivamente do visual, layout e melhorias do site (index.html)",
+      "prompt_file": "src/agents/06-wm-ti-site.md",
+      "temperature": 0.3,
+      "max_tokens": 4096,
+      "triggers": ["site", "visual", "index", "hero"],
+      "priority": 5,
+      "active": true,
+      "scope": "internal"
+    },
+    {
+      "id": "wm-ti-bot",
+      "name": "TI - Visual & UX do Bot",
+      "description": "Cuida da interface, usabilidade e visual do OpenClaw e bot",
+      "prompt_file": "src/agents/07-wm-ti-bot.md",
+      "temperature": 0.3,
+      "max_tokens": 4096,
+      "triggers": ["bot", "openclaw", "ux", "interface"],
+      "priority": 5,
+      "active": true,
+      "scope": "internal"
+    },
+    {
+      "id": "wm-ti-melhorias",
+      "name": "TI - Estudos & Melhorias",
+      "description": "Estuda, propõe e implementa melhorias contínuas no sistema",
+      "prompt_file": "src/agents/08-wm-ti-melhorias.md",
+      "temperature": 0.4,
+      "max_tokens": 4096,
+      "triggers": ["melhoria", "melhorar", "otimizar", "estudo"],
+      "priority": 5,
+      "active": true,
+      "scope": "internal"
+    },
+    {
+      "id": "wm-sdr",
+      "name": "SDR - Qualificação de Leads",
+      "description": "Qualifica leads que chegam via WhatsApp ou site",
+      "prompt_file": "src/agents/09-wm-sdr.md",
+      "temperature": 0.3,
+      "max_tokens": 4096,
+      "triggers": ["sdr", "lead", "qualificar"],
+      "priority": 5,
+      "active": true,
+      "scope": "internal"
+    },
+    {
+      "id": "wm-lead-captacao",
+      "name": "Captação de Leads Automática",
+      "description": "Busca e captura novos leads para licitações",
+      "prompt_file": "src/agents/10-wm-lead-captacao.md",
+      "temperature": 0.4,
+      "max_tokens": 4096,
+      "triggers": ["captacao", "leads", "novos clientes"],
+      "priority": 5,
+      "active": true,
+      "scope": "internal"
+    },
+    {
+      "id": "wm-financeiro",
+      "name": "Financeiro & Relatórios",
+      "description": "Controle financeiro, propostas, faturamento e relatórios internos",
+      "prompt_file": "src/agents/11-wm-financeiro.md",
+      "temperature": 0.2,
+      "max_tokens": 2048,
+      "triggers": ["financeiro", "faturamento", "relatorio"],
+      "priority": 5,
+      "active": true,
+      "scope": "internal"
+    },
+    {
+      "id": "wm-gestor",
+      "name": "Gestor Interno",
+      "description": "Coordena todos os agentes internos e reporta para o dono",
+      "prompt_file": "src/agents/12-wm-gestor.md",
+      "temperature": 0.3,
+      "max_tokens": 4096,
+      "triggers": ["gestor", "orquestrador", "time interno"],
+      "priority": 10,
+      "active": true,
+      "scope": "internal"
     }
   ],
   "routing_rules": {

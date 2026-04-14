@@ -1,0 +1,10 @@
+{
+  "name": "wm-agents-worker",
+  "version": "1.0.0",
+  "description": "Worker dos 8 agentes internos da World Metalic",
+  "main": "worker.js",
+  "scripts": {
+    "start": "node worker.js"
+  },
+  "dependencies": {}
+}

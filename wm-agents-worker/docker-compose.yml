@@ -1,0 +1,12 @@
+services:
+  wm-agents-worker:
+    build: .
+    container_name: wm-agents-worker
+    restart: unless-stopped
+    env_file:
+      - .env
+    network_mode: host
+    volumes:
+      - /root/world-metalic-ia:/root/world-metalic-ia:ro
+    labels:
+      - traefik.enable=false
