@@ -1,0 +1,11 @@
+services:
+  wm-bot:
+    build: .
+    container_name: wm-bot
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    restart: unless-stopped
+    labels:
+      - traefik.enable=false
